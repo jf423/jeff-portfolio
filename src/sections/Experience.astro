@@ -1,0 +1,29 @@
+---
+import SectionHeading from '../components/SectionHeading/SectionHeading.astro';
+import TimelineItem from '../components/TimelineItem/TimelineItem.astro';
+import { experiences } from '../data/experience';
+---
+
+<section id="experience" class="section experience">
+  <div class="container">
+    <SectionHeading line1="YEARS OF" line2="EXPERIENCE" />
+
+    <div class="timeline">
+      {
+        experiences.map((item, i) => (
+          <TimelineItem item={item} isLast={i === experiences.length - 1} />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience {
+    padding-block: var(--space-24);
+  }
+
+  .timeline {
+    max-width: 760px;
+  }
+</style>

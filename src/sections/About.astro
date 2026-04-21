@@ -1,0 +1,136 @@
+---
+import SectionHeading from '../components/SectionHeading/SectionHeading.astro';
+import { personal } from '../data/personal';
+---
+
+<section id="about" class="section about">
+  <div class="container">
+    <SectionHeading line1="ABOUT" line2="ME" />
+
+    <div class="grid">
+      <div class="bio">
+        {personal.aboutParagraphs.map((p) => <p>{p}</p>)}
+      </div>
+
+      <div class="looking-for">
+        <h3 class="card-title">What I'm Looking For</h3>
+        <p>{personal.lookingFor}</p>
+
+        <div class="divider"></div>
+
+        <div class="detail-row">
+          <span class="detail-label">Location</span>
+          <span class="detail-value">{personal.location}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Status</span>
+          <span class="detail-value status">Open to Work</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Email</span>
+          <a href={`mailto:${personal.email}`} class="detail-link">{personal.email}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding-block: var(--space-24);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .bio {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .bio p {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-2);
+    line-height: 1.75;
+  }
+
+  .looking-for {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .card-title {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--color-text-1);
+    letter-spacing: -0.01em;
+  }
+
+  .looking-for p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-2);
+    line-height: 1.7;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--color-border);
+    margin-block: 0.25rem;
+  }
+
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .detail-label {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--color-text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .detail-value {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-2);
+  }
+
+  .detail-value.status {
+    color: #4ade80;
+    font-weight: 500;
+  }
+
+  .detail-link {
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    transition: opacity var(--transition-fast);
+  }
+
+  .detail-link:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 767px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .bio p {
+      font-size: var(--font-size-base);
+    }
+  }
+</style>
