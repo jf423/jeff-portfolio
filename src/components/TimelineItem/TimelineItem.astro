@@ -1,0 +1,158 @@
+---
+import Badge from '../Badge/Badge.astro';
+import type { ExperienceItem } from '../../types';
+
+interface Props {
+  item: ExperienceItem;
+  isLast?: boolean;
+}
+const { item, isLast = false } = Astro.props;
+---
+
+<div class:list={['timeline-item', { last: isLast }]}>
+  <div class="dot-col">
+    <div class="dot"></div>
+    {!isLast && <div class="line"></div>}
+  </div>
+
+  <div class="content">
+    <div class="header">
+      <div class="company-row">
+        <span class="company">{item.company}</span>
+        <span class="period">{item.period}</span>
+      </div>
+      <div class="role-row">
+        <span class="role">{item.role}</span>
+        <span class="location">{item.location}</span>
+      </div>
+    </div>
+
+    <ul class="highlights">
+      {item.highlights.map((h) => <li>{h}</li>)}
+    </ul>
+
+    <div class="tags">
+      {item.tags.map((tag) => <Badge label={tag} />)}
+    </div>
+  </div>
+</div>
+
+<style>
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 0 1.25rem;
+    padding-bottom: 3rem;
+  }
+
+  .timeline-item.last {
+    padding-bottom: 0;
+  }
+
+  .dot-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0.25rem;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    border: 2px solid var(--color-bg);
+    outline: 2px solid var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .line {
+    width: 2px;
+    flex: 1;
+    background: var(--color-border);
+    margin-top: 0.5rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .company-row,
+  .role-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .company {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-text-1);
+    letter-spacing: -0.02em;
+  }
+
+  .period {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-2);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .role {
+    font-size: var(--font-size-base);
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .location {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-3);
+  }
+
+  .highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .highlights li {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-2);
+    line-height: 1.65;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .highlights li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+
+  @media (max-width: 639px) {
+    .company-row,
+    .role-row {
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+  }
+</style>

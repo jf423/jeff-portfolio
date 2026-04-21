@@ -1,0 +1,68 @@
+---
+interface Props {
+  line1: string;
+  line2: string;
+  align?: 'left' | 'center';
+}
+const { line1, line2, align = 'left' } = Astro.props;
+---
+
+<div class:list={['wrapper', align]}>
+  <h2 class="title">
+    {line1}<br />{line2}
+  </h2>
+  <span class="ghost" aria-hidden="true">{line1} {line2}</span>
+</div>
+
+<style>
+  .wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 3rem;
+    overflow: hidden;
+  }
+
+  .wrapper.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .title {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--color-text-1);
+    position: relative;
+    z-index: 1;
+  }
+
+  .ghost {
+    position: absolute;
+    font-size: clamp(4.5rem, 12vw, 9rem);
+    font-weight: 800;
+    color: var(--color-text-1);
+    opacity: 0.04;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+  }
+
+  @media (max-width: 639px) {
+    .ghost {
+      display: none;
+    }
+
+    .wrapper {
+      margin-bottom: 2rem;
+    }
+  }
+</style>

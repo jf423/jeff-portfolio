@@ -1,0 +1,78 @@
+---
+import { GitHubIcon } from '../icons/GitHubIcon';
+import { LinkedInIcon } from '../icons/LinkedInIcon';
+import { MailIcon } from '../icons/MailIcon';
+import { personal } from '../../data/personal';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="inner">
+      <p class="copy">
+        © {year} {personal.name}. Built with Astro & TypeScript.
+      </p>
+
+      <div class="links">
+        <a href={personal.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <GitHubIcon size={18} />
+        </a>
+        <a
+          href={personal.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+        >
+          <LinkedInIcon size={18} />
+        </a>
+        <a href={`mailto:${personal.email}`} aria-label="Email">
+          <MailIcon size={18} />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    padding-block: 2rem;
+  }
+
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .copy {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-3);
+  }
+
+  .links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .links a {
+    color: var(--color-text-3);
+    transition: color var(--transition-fast);
+    display: flex;
+    align-items: center;
+  }
+
+  .links a:hover {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 639px) {
+    .inner {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+</style>

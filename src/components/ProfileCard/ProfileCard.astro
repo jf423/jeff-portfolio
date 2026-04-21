@@ -1,0 +1,132 @@
+---
+import { GitHubIcon } from '../icons/GitHubIcon';
+import { LinkedInIcon } from '../icons/LinkedInIcon';
+import { MailIcon } from '../icons/MailIcon';
+import { personal } from '../../data/personal';
+---
+
+<div class="card">
+  <div class="avatar-wrap">
+    <img
+      src={personal.avatarUrl}
+      alt={`${personal.name} profile photo`}
+      class="avatar"
+      width="96"
+      height="96"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+    />
+    <div class="avatar-fallback" style="display:none">{personal.initials}</div>
+  </div>
+
+  <div class="info">
+    <h1 class="name">{personal.name}</h1>
+    <p class="title">{personal.title}</p>
+    <p class="location">{personal.location}</p>
+
+    <div class="links">
+      <a href={personal.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <GitHubIcon size={18} />
+      </a>
+      <a href={personal.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <LinkedInIcon size={18} />
+      </a>
+      <a href={`mailto:${personal.email}`} aria-label="Email">
+        <MailIcon size={18} />
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    width: fit-content;
+  }
+
+  .avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-accent-subtle);
+  }
+
+  .avatar-fallback {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--color-accent-subtle);
+    border: 2px solid rgba(129, 140, 248, 0.2);
+    color: var(--color-accent);
+    font-size: 1.25rem;
+    font-weight: 800;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: -0.02em;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .name {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text-1);
+    line-height: 1.2;
+  }
+
+  .title {
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .location {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-2);
+  }
+
+  .links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .links a {
+    color: var(--color-text-2);
+    transition: color var(--transition-fast);
+    display: flex;
+    align-items: center;
+  }
+
+  .links a:hover {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 639px) {
+    .card {
+      flex-direction: column;
+      text-align: center;
+      width: 100%;
+    }
+
+    .links {
+      justify-content: center;
+    }
+  }
+</style>
