@@ -6,42 +6,49 @@ import { personal } from '../data/personal';
 
 <section id="hero" class="hero">
   <div class="container">
-    <div class="top">
-      <ProfileCard />
-      <span class="availability">
-        <span class="dot" aria-hidden="true"></span>
-        Open to Work
-      </span>
-    </div>
+    <div class="hero-grid">
 
-    <div class="heading-wrap">
-      <h2 class="heading">
-        FRONTEND<br />ENGINEER
-      </h2>
-      <span class="heading-ghost" aria-hidden="true">FRONTEND ENGINEER</span>
-    </div>
+      <div class="hero-left">
+        <div class="heading-wrap">
+          <h2 class="heading">
+            JEFF<br />WANG
+          </h2>
+          <span class="heading-ghost" aria-hidden="true">JEFF WANG</span>
+        </div>
 
-    <p class="tagline">{personal.tagline}</p>
+        <p class="tagline">{personal.tagline}</p>
 
-    <div class="stats">
-      {personal.stats.map((stat) => <StatChip value={stat.value} label={stat.label} />)}
-    </div>
+        <div class="stats">
+          {personal.stats.map((stat) => <StatChip value={stat.value} label={stat.label} />)}
+        </div>
 
-    <div class="ctas">
-      <a
-        href={personal.resumeUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn btn-primary"
-      >
-        View Resume ↗
-      </a>
-      <button
-        class="btn btn-ghost"
-        onclick="document.getElementById('contact')?.scrollIntoView({behavior:'smooth'})"
-      >
-        Contact Me
-      </button>
+        <div class="ctas">
+          <a
+            href={personal.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+          >
+            View Resume ↗
+          </a>
+          <button
+            class="btn btn-ghost"
+            onclick="document.getElementById('contact')?.scrollIntoView({behavior:'smooth'})"
+          >
+            Contact Me
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="profile-glow" aria-hidden="true"></div>
+        <ProfileCard />
+        <span class="availability">
+          <span class="dot" aria-hidden="true"></span>
+          Open to Work
+        </span>
+      </div>
+
     </div>
   </div>
 </section>
@@ -59,43 +66,22 @@ import { personal } from '../data/personal';
     max-width: var(--container-max);
     margin-inline: auto;
     padding-inline: var(--container-pad);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
     width: 100%;
   }
 
-  .top {
+  /* ── Two-column grid ─────────────────────────────── */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  /* ── Left: text content ──────────────────────────── */
+  .hero-left {
     display: flex;
-    align-items: center;
-    gap: var(--space-6);
-    flex-wrap: wrap;
-  }
-
-  .availability {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    color: #4ade80;
-    background: rgba(74, 222, 128, 0.08);
-    border: 1px solid rgba(74, 222, 128, 0.2);
-    border-radius: var(--radius-full);
-    padding: 0.35rem 0.875rem;
-  }
-
-  .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #4ade80;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+    flex-direction: column;
+    gap: var(--space-8);
   }
 
   .heading-wrap {
@@ -133,7 +119,7 @@ import { personal } from '../data/personal';
   .tagline {
     font-size: clamp(var(--font-size-base), 2vw, var(--font-size-lg));
     color: var(--color-text-2);
-    max-width: 560px;
+    max-width: 520px;
     line-height: 1.7;
   }
 
@@ -150,6 +136,60 @@ import { personal } from '../data/personal';
     align-items: center;
   }
 
+  /* ── Right: profile ──────────────────────────────── */
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    position: relative;
+  }
+
+  .profile-glow {
+    position: absolute;
+    inset: -40px;
+    background: radial-gradient(ellipse at center, rgba(129, 140, 248, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
+  }
+
+  .hero-right :global(.card) {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .availability {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.08);
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    border-radius: var(--radius-full);
+    padding: 0.35rem 0.875rem;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ── Buttons ─────────────────────────────────────── */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -193,7 +233,18 @@ import { personal } from '../data/personal';
     background: var(--color-surface);
   }
 
-  @media (max-width: 639px) {
+  /* ── Mobile: single column ───────────────────────── */
+  @media (max-width: 767px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+
+    .hero-right {
+      order: -1;
+      align-items: flex-start;
+    }
+
     .heading-ghost {
       display: none;
     }
