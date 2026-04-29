@@ -3,10 +3,10 @@ import type { PersonalData } from '../types';
 export const personal: PersonalData = {
   name: 'Jeff Wang',
   initials: 'JW',
-  title: 'Senior Frontend Engineer',
+  title: 'Senior Software Engineer',
   location: 'Vancouver, BC, Canada',
   tagline:
-    'Building large-scale SaaS platforms with React & TypeScript — from pixel-perfect design systems to measurable performance wins.',
+    '8+ years building scalable SaaS platforms — specialising in frontend architecture, design systems, and performance, with experience across APIs, backend services, and cloud systems.',
   email: 'jf0423@gmail.com',
   github: 'https://github.com/jf423',
   linkedin: 'https://linkedin.com/in/jeffwangtw',
@@ -18,9 +18,9 @@ export const personal: PersonalData = {
     { value: '+50%', label: 'Perf Gains' },
   ],
   aboutParagraphs: [
-    "I'm a Senior Frontend Engineer with 8+ years building production-grade SaaS platforms across Europe and Asia. My work spans design systems in TypeScript monorepos, complex PDF workflow UIs, cloud security consoles, and real-time audio-visualization interfaces.",
-    'I care deeply about the intersection of engineering rigour and user experience — writing components that are accessible, testable, and a pleasure to maintain. I love pushing performance boundaries and mentoring teams through architectural shifts.',
+    "I'm a Senior Software Engineer with 8+ years of experience building scalable SaaS platforms. I specialise in frontend architecture and performance, with hands-on experience across APIs, backend services, and cloud systems — delivering end-to-end solutions in global teams.",
+    'My work spans design systems in TypeScript monorepos, enterprise PDF workflow UIs, cloud security consoles, and real-time audio-visualisation interfaces. I care deeply about engineering rigour, testability, and shipping with confidence.',
   ],
   lookingFor:
-    'Open to senior and staff-level frontend roles — remote-friendly or based in Vancouver, BC. I thrive in teams that value architecture discussions, meaningful code review, and shipping with confidence.',
+    'Open to senior and staff-level roles — onsite, hybrid, or remote. Eligible to work in Canada. I thrive in teams that value architecture discussions, meaningful code review, and a strong culture of craft.',
 };
